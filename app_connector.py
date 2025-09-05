@@ -311,7 +311,7 @@ gpgkey=https://yum.private.zscaler.com/yum/el9/gpg"
 REPO_FILE="/etc/yum.repos.d/zscaler.repo"
 
 # Create or overwrite the repository file
-echo "$REPO_CONTENT" > "$REPO_FILE"
+echo "$REPO_CONTENT" | sudo tee "$REPO_FILE" > /dev/null
 
 echo "********************************************************"
 echo "*                                                      *"
@@ -338,7 +338,7 @@ echo "Successfully removed!"
 # Create new provisioning key file
 touch "$FILE/provision_key"
 chmod 644 "$FILE/provision_key"
-echo "$PROVISION_KEY" > "$FILE/provision_key"
+echo "${provisioning_key}" > "$FILE/provision_key"
 
 echo
 echo "Starting the ZPA Connector service again..."; sleep 1
